@@ -4,11 +4,12 @@ namespace Api;
 
 class Enviar
 {
-    public function temperatura(): array
+    public function temperatura($variaveis): array
     {
         return [
             "status" => true,
-            "message" => "temperatura"
+            "message" => "temperatura",
+            "variaveis" => $variaveis
         ];
     }
 

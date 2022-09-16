@@ -6,6 +6,8 @@ header("Content-Type: application/json, charset=utf-8");
 $url = trim($_GET["route"], "/");
 
 $route = explode("/", $url);
+$variables = filter_input_array(INPUT_GET);
+unset($variables["route"]);
 
 if (count($route) > 2) {
     http_response_code(400);
@@ -37,5 +39,5 @@ if (!method_exists($class, $methode)) {
     exit;
 }
 
-$execution = (new $class)->$methode();
+$execution = (new $class)->$methode($variables);
 echo json_encode($execution);
