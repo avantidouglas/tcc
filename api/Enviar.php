@@ -2,15 +2,15 @@
 
 namespace Api;
 
-class Enviar
+use \Api\Class\Banco;
+
+class Enviar extends Banco
 {
-    public function temperatura($variaveis): array
+    public function temperatura()
     {
-        return [
-            "status" => true,
-            "message" => "temperatura",
-            "variaveis" => $variaveis
-        ];
+        $leitura = (new Banco)->retornaTeste();
+        echo json_encode($leitura);
+        
     }
 
     public function umidade(): array
