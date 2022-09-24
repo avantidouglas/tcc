@@ -40,4 +40,3 @@ if (!method_exists($class, $methode)) {
 }
 
 $execution = (new $class)->$methode($variables);
-echo json_encode($execution);

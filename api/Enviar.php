@@ -6,11 +6,10 @@ use \Api\Class\Banco;
 
 class Enviar extends Banco
 {
-    public function temperatura()
+    public function temperatura($whatever)
     {
         $leitura = (new Banco)->retornaTeste();
         echo json_encode($leitura);
-        
     }
 
     public function umidade(): array
