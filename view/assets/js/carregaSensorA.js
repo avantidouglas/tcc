@@ -1,21 +1,17 @@
-var ctx = document.getElementById('temperatura_hora').getContext('2d');
+var ctx = document.getElementById('sensor_a').getContext('2d');
 var myLineChart = new Chart(ctx, {
     type: 'line',
     data: {
         labels: [" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "
-                ," ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "
-                ," ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "
                 ," ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "],
         datasets: [{
-                label: 'Lote A',
-                data: [23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34
-                      ,35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35
-                      ,34, 33, 32, 31, 30, 29, 28, 27, 35, 35, 35, 35
-                      ,31, 32, 33, 34, 29, 30, 31, 32, 33, 34, 35, 36],
-                borderColor: 'rgba(255,99,132)',
+                label: 'Sensor A',
+                data: [20, 23, 25, 28, 35, 38, 40, 45, 47, 47, 47, 56
+                      ,58, 60, 62, 65, 68, 70, 72, 75, 78, 80, 82, 85],
+                borderColor: '#ADD8E6',
                 borderWidth: 3,
                 type: 'line'
-            } 
+            }
         ]
 
     },
@@ -31,7 +27,7 @@ var myLineChart = new Chart(ctx, {
                 display: true,
                 scaleLabel: {
                     display: true,
-                    labelString: 'Ultimas 4 Horas',
+                    labelString: 'Ultimas 2 Horas',
                     fontColor: '#ffffff',
                     fontSize: 16
 
@@ -46,7 +42,7 @@ var myLineChart = new Chart(ctx, {
                 display: true,
                 scaleLabel: {
                     display: true,
-                    labelString: 'Graus ºC',
+                    labelString: '(%) de Umidade',
                     fontColor: '#ffffff',
                     fontSize: 16
                 },
