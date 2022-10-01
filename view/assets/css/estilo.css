@@ -1,3 +1,7 @@
 .escondido{
     display: none !important;
 }
+
+.esquerda{
+    justify-content: left;
+}

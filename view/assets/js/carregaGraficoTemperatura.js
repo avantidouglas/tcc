@@ -28,7 +28,7 @@ var myLineChart = new Chart(ctx, {
                 display: true,
                 scaleLabel: {
                     display: true,
-                    labelString: 'Ultimas 4 Horas',
+                    labelString: 'Ultimas 2 Horas',
                     fontColor: '#ffffff',
                     fontSize: 16
 
