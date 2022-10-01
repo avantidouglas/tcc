@@ -60,3 +60,28 @@ var myLineChart = new Chart(ctx, {
     }
 
 });
+
+var valor = 50;
+var resto = 100-valor;
+
+new Chart(document.getElementById("sensor_c_agora"), {
+    "type": "doughnut",
+    "data": {
+        "labels": ["UMIDADE (%)", "SECURA (%)"],
+        "datasets": [{
+            "data": [valor, resto],
+            borderColor: '#222046',
+            borderWidth: 10,
+            "backgroundColor": ["rgb(255, 99, 132)", "rgb(54, 162, 235)", "rgb(255, 205, 86)"],
+            hoverBorderColor: '#222046',
+        }]
+    },
+    options: {
+        legend: {
+            labels: {
+                fontColor: "white",
+                fontSize: 18
+            }
+        }
+    }
+});

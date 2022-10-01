@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboad</title>
+    <title>SAPAAC</title>
     <!-- CSS  -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="assets/css/estilo.css" rel="stylesheet">
     <!-- For mobile phones: -->
     <style type="text/css">
       @media only screen and (max-width: 600px) {
@@ -19,46 +20,57 @@
   <body style="background-color:#222046;">
     <nav class="navbar navbar-expand-lg d-none d-sm-block" style="background-color:#222046; color:#fff">
       <a class="navbar-brand" href="#" style="text-decoration:none; color: #fff">
-        <img src="/view/assets/img/plantar.png" width="40px" height="40px">&#160;&#160;TCC - SOLO </a>
-    </nav>
-    <!-- Card - Clima Tempo -->
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-md-10">
-          <div class="card" style="background-color:#191835; color:#fff; border-radius: 10px">
-            <div class="card-body"> Dados do Clima Tempo - API / Data e hora atual </div>
-          </div>
-        </div>
-        <!-- Botão Gerar Relatório -->
-        <div class="col-md-2">
-          <button type=" button" class="btn btn-success mr-2" style="width: 181px; height:64px;float: right;">Gerar Relatório</button>
-        </div>
+        <img src="assets/img/plantar.png" width="40px" height="40px">&#160;&#160;SAPAAC </a>
+      <div id="config-start" class="navbar-brand" style="float: right">
+        <input type="image" src="assets/img/config.png" width="40px" height="40px">
       </div>
-    </div>
+    </nav>
+    
     <!-- CONTEÚDO -->
-    <!-- Gráfico de Temperatura -->
-    <div class="container-fluid mt-5">
-      <div class="row">
+
+    <div id="dashboard" class="container-fluid">
+
+      <!-- Gráfico de Temperatura -->
+      <div class="row mb-3">
         <div class="col-md-6">
-          <div class="card" style="background-color:#191835; color:#fff;">
+          <div class="card" style="background-color:#191835; color:#fff;height: 100%;">
             <div class="card-header">
-              <h4>Umidade (%)</h4>
+              <h4>Temperatura Atual</h4>
             </div>
             <div class="card-body">
-              <div class="container" style="background-color: #222046;margin-top:5px;">
-                <canvas style="padding:30px" id="sensor_c"></canvas>
+              <div class="chartjs-wrapper" style="background-color: #222046;margin-top:5px;height: 100%;">
+                <canvas style="padding:30px" id="temperatura_atual"></canvas>
               </div>
             </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card" style="background-color:#191835; color:#fff;height: 100%;">
             <div class="card-header">
               <h4>Temperatura (C°)</h4>
             </div>
             <div class="card-body">
-              <div class="container" style="background-color: #222046;margin-top: 5px;">
+              <div class="container" style="background-color: #222046;margin-top: 5px;height: 100%;">
                 <canvas style="padding:30px" id="temperatura_hora"></canvas>
               </div>
             </div>
           </div>
         </div>
+      </div>
+      <!-- divisoria sensor A -->
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <div class="card" style="background-color:#191835; color:#fff;height: 100%;">
+            <div class="card-header">
+              <h4>Umidade Atual</h4>
+            </div>
+            <div class="card-body">
+              <div class="container" style="background-color: #222046;margin-top:5px;height: 100%;">
+                <canvas style="padding:30px" id="sensor_a_agora"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
         <div class="col-md-6">
           <div class="card" style="background-color:#191835; color:#fff;">
             <div class="card-header">
@@ -66,9 +78,28 @@
             </div>
             <div class="card-body">
               <div class="container" style="background-color: #222046;margin-top:5px;">
-                <canvas style="padding:30px" id="sensor_a"></canvas>
+                <canvas style="padding:30px;" id="sensor_a"></canvas>
               </div>
             </div>
+          </div>
+        </div>
+      </div>
+      <!-- divisoria sensor B -->
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <div class="card" style="background-color:#191835; color:#fff;height: 100%;">
+            <div class="card-header">
+              <h4>Umidade Atual</h4>
+            </div>
+            <div class="card-body">
+              <div class="container" style="background-color: #222046;margin-top:5px;height: 100%;">
+                <canvas style="padding:30px" id="sensor_b_agora"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card" style="background-color:#191835; color:#fff;">
             <div class="card-header">
               <h4>Umidade (%)</h4>
             </div>
@@ -79,32 +110,60 @@
             </div>
           </div>
         </div>
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-md-6">
-              <div class="card mt-3" style="background-color:#191835; color:#fff;">
-                <div class="card-header">
-                  <h4>Agenda e Lembretes</h4>
-                </div>
-                <div class="card-body" style="height: 260px;">
-                  <div class="container" style="background-color: #222046;margin-top:5px;"></div>
-                </div>
+      </div>
+      <!-- divisoria sensor C -->
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <div class="card" style="background-color:#191835; color:#fff;height: 100%;">
+            <div class="card-header">
+              <h4>Umidade Atual</h4>
+            </div>
+            <div class="card-body">
+              <div class="container" style="background-color: #222046;margin-top:5px;height: 100%;">
+                <canvas style="padding:30px" id="sensor_c_agora"></canvas>
               </div>
             </div>
-            <div class="col-md-6">
-              <div class="card mt-3" style="background-color:#191835;color:#fff;height: 260px;">
-                <div class="card-header">
-                  <h4>Compromissos de Hoje</h4>
-                </div>
-                <div class="card-body">
-                  <div class="container" style="background-color: #222046;margin-top:5px;">
-                    <div class="col-md-4">
-                      <div class="card">
-                        <div class="card-header">
-                          <h4>Compromisso 1</h4>
-                        </div>
-                        <div class="card-body"> Teste </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card" style="background-color:#191835; color:#fff;">
+            <div class="card-header">
+              <h4>Umidade (%)</h4>
+            </div>
+            <div class="card-body">
+              <div class="container" style="background-color: #222046;margin-top:5px;">
+                <canvas style="padding:30px" id="sensor_c"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- divisoria agenda -->
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="card mt-3" style="background-color:#191835; color:#fff;">
+              <div class="card-header">
+                <h4>Agenda e Lembretes</h4>
+              </div>
+              <div class="card-body" style="height: 260px;">
+                <div class="container" style="background-color: #222046;margin-top:5px;"></div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card mt-3" style="background-color:#191835;color:#fff;height: 260px;">
+              <div class="card-header">
+                <h4>Compromissos de Hoje</h4>
+              </div>
+              <div class="card-body">
+                <div class="container" style="background-color: #222046;margin-top:5px;">
+                  <div class="col-md-4">
+                    <div class="card">
+                      <div class="card-header">
+                        <h4>Compromisso 1</h4>
                       </div>
+                      <div class="card-body"> Teste </div>
                     </div>
                   </div>
                 </div>
@@ -115,10 +174,12 @@
       </div>
     </div>
     </div>
+    </div>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js"></script>
     <script src="./assets/js/carregaGraficoTemperatura.js"></script>
     <script src="./assets/js/carregaSensorA.js"></script>
     <script src="./assets/js/carregaSensorB.js"></script>
     <script src="./assets/js/carregaSensorC.js"></script>
+    <script src="./assets/js/config.js"></script>
   </body>
 </html>
