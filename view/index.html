@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SAPAAC</title>
+    <title>SAPAAC - Dashboard</title>
     <!-- CSS  -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link href="assets/css/estilo.css" rel="stylesheet">
@@ -30,7 +30,7 @@
       <!-- Gráfico de Temperatura -->
       <div class="row mb-3">
         <div class="col-md-6">
-          <div class="card" style="background-color:#191835; color:#fff;height: 100%;">
+          <div class="card" style="background-color:#191835; color:#fff;height: 100%;" id="sombra">
             <div class="card-header">
               <h6>Temperatura Atual</h6>
             </div>
@@ -54,12 +54,12 @@
                 <!-- Nascer do Sol -->
                 <div class="row mt-3">
                   <div class="col-6">
-                    <div class="card" style="background-color:#191835; color:#fff;height: 100%;">
+                    <div class="card" style="background-color:#191835; color:#fff;height: 100%;" >
                       <!-- <div class="card-header text-center">
                         <h6>Nascer do Sol</h6>
                       </div> -->
                       <div class="card-body">
-                        <div class ="container text-center" style="background-color: #222046;margin-top:5px;height: 100%;">
+                        <div class ="container text-center" style="background-color: #222046;margin-top:5px;height: 100%;" id="sombra2">
                           <img src="assets/img/sunrise.png" width="55" height="55">
                           <span class="h6" id="nascer"></span>
                         </div>
@@ -73,7 +73,7 @@
                         <h6>Pôr do Sol</h6>
                       </div> -->
                       <div class="card-body">
-                        <div class ="container text-center" style="background-color: #222046;margin-top:5px;height: 100%;">
+                        <div class ="container text-center" style="background-color: #222046;margin-top:5px;height: 100%;" id="sombra2">
                           <span class="h6" id="por"></span>
                           <img src="assets/img/sunset.png" width="55" height="55">
                         </div>
@@ -89,7 +89,7 @@
                         <h6>Umidade</h6>
                       </div> -->
                       <div class="card-body">
-                        <div class ="container text-center" style="background-color: #222046;margin-top:5px;height: 100%;">
+                        <div class ="container text-center" style="background-color: #222046;margin-top:5px;height: 100%;" id="sombra2">
                           <img src="assets/img/umidade.png" width="50" height="50" style="margin-top: 10px;">
                           <span class="h6" id="umidade-ar"></span>
                         </div>
@@ -103,7 +103,7 @@
                         <h6>Clima</h6>
                       </div> -->
                       <div class="card-body">
-                        <div class ="container text-center" style="background-color: #222046;margin-top:5px;height: 100%;">
+                        <div class ="container text-center" style="background-color: #222046;margin-top:5px;height: 100%;" id="sombra2">
                           <span class="h6" id="situacao"></span>
                           <img src="assets/img/nuvem.png" width="55" height="55">
                         </div>
@@ -117,13 +117,13 @@
         </div>
         <!-- Gráfico de Temperatura -->
         <div class="col-md-6">
-          <div class="card" style="background-color:#191835; color:#fff;height: 100%;">
+          <div class="card" style="background-color:#191835; color:#fff;height: 100%;" id="sombra">
             <div class="card-header">
               <h6>Temperatura (C°)</h6>
             </div>
             <div class="card-body">
-              <div class="container" style="background-color: #222046;margin-top: 5px;height: 100%;">
-                <canvas style="padding:30px" id="temperatura_hora"></canvas>
+              <div class="container" style="background-color: #222046;margin-top: 5px;height: 100%" >
+                <canvas style="padding:30px;" id="temperatura_hora"></canvas>
               </div>
             </div>
           </div>
@@ -132,7 +132,7 @@
       <!-- divisoria sensor A -->
       <div class="row mb-3">
         <div class="col-md-6">
-          <div class="card" style="background-color:#191835; color:#fff;height: 100%;">
+          <div class="card" style="background-color:#191835; color:#fff;height: 100%;"id="sombra">
             <div class="card-header">
               <h6>Umidade Atual</h6>
             </div>
@@ -144,7 +144,7 @@
           </div>
         </div>
         <div class="col-md-6">
-          <div class="card" style="background-color:#191835; color:#fff;">
+          <div class="card" style="background-color:#191835; color:#fff;" id="sombra">
             <div class="card-header">
               <h6>Umidade (%)</h6>
             </div>
@@ -159,7 +159,7 @@
       <!-- divisoria sensor B -->
       <div class="row mb-3">
         <div class="col-md-6">
-          <div class="card" style="background-color:#191835; color:#fff;height: 100%;">
+          <div class="card" style="background-color:#191835; color:#fff;height: 100%;" id="sombra">
             <div class="card-header">
               <h6>Umidade Atual</h6>
             </div>
@@ -171,12 +171,12 @@
           </div>
         </div>
         <div class="col-md-6">
-          <div class="card" style="background-color:#191835; color:#fff;">
+          <div class="card" style="background-color:#191835; color:#fff;" id="sombra">
             <div class="card-header">
               <h6>Umidade (%)</h6>
             </div>
             <div class="card-body">
-              <div class="container" style="background-color: #222046;margin-top:5px;">
+              <div class="container" style="background-color: #222046;margin-top:5px;" > 
                 <canvas style="padding:30px" id="sensor_b"></canvas>
               </div>
             </div>
@@ -186,24 +186,24 @@
       <!-- divisoria sensor C -->
       <div class="row mb-3">
         <div class="col-md-6">
-          <div class="card" style="background-color:#191835; color:#fff;height: 100%;">
+          <div class="card" style="background-color:#191835; color:#fff;height: 100%;" id="sombra">
             <div class="card-header">
               <h6>Umidade Atual</h6>
             </div>
             <div class="card-body">
-              <div class="container" style="background-color: #222046;margin-top:5px;height: 100%;">
+              <div class="container" style="background-color: #222046;margin-top:5px;height: 100%;" >
                 <canvas style="padding:30px" id="sensor_c_agora"></canvas>
               </div>
             </div>
           </div>
         </div>
         <div class="col-md-6">
-          <div class="card" style="background-color:#191835; color:#fff;">
+          <div class="card" style="background-color:#191835; color:#fff;" id="sombra">
             <div class="card-header">
               <h6>Umidade (%)</h6>
             </div>
             <div class="card-body">
-              <div class="container" style="background-color: #222046;margin-top:5px;">
+              <div class="container" style="background-color: #222046;margin-top:5px;" >
                 <canvas style="padding:30px" id="sensor_c"></canvas>
               </div>
             </div>
