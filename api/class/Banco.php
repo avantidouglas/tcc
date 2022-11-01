@@ -30,7 +30,7 @@ class Banco
 
     public function retornaTeste()
     {
-        $sql = "SELECT * FROM tcc.teste";
+        $sql = "SELECT * FROM tcc.sensor";
         $result = $this->db->query($sql)->fetch_all(MYSQLI_ASSOC);
         return $result;
     }
