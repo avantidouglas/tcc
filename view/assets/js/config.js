@@ -1,3 +1,5 @@
+configAtual();
+
 var div = document.getElementById("config-start");
     div.onclick = function(){
     escondeCorpo();
@@ -42,4 +44,149 @@ var div5 = document.getElementById("botao-03");
 var div6 = document.getElementById("botao-04");
     div6.onclick = function(){
     alert("Botão 04");
+}
+
+function configAtual(){
+    $.ajax({
+        type: 'get',
+        crossDomain: true,
+        url: '../Config/retornaBomba?bomba=1',
+        success: function(e){
+            var data = JSON.parse(e);
+
+            let html = 
+            `<label>Intervalo ( Minutos )</label>
+            <input value= "${data[0]['bomba_intervalo']/60}" type="number" class="form-control" placeholder="Minutos" min="1" id="intervalo_a">`;
+
+            $('#intervalo_a').html(html);
+            
+            let html2 =
+            `<label">Limite de Umidade ( % )</label>
+            <input value= "${data[0]['bomba_umidade_max']}" type="number" class="form-control" placeholder="%" min="0" max="100" id="sombra" />`;
+
+            $('#umidade_a').html(html2);
+
+            let html3 =
+            `<label>Tempo de Vazão ( Segundos )</label>
+            <input value= "${data[0]['bomba_tempo_vazao']}" type="number" class="form-control" placeholder="%" min="5" max="60" id="sombra" />`;
+
+            $('#vazao_a').html(html3);
+
+
+            if(data[0]['bomba_ativa'] == '1'){
+                let html4 = 
+                `<input class="form-check-input" type="checkbox"/>
+                <label class="form-check-label" for="ativa_a">Desativar ciclo</label>`;
+
+                $('#ativa_a').html(html4);
+
+            }else{
+                let html4 = 
+                `<input class="form-check-input" type="checkbox" checked/>
+                <label class="form-check-label" for="ativa_a">Desativar ciclo</label>`;
+
+                $('#ativa_a').html(html4);
+            }
+
+            
+        }
+    });
+
+    $.ajax({
+        type: 'get',
+        crossDomain: true,
+        url: '../Config/retornaBomba?bomba=2',
+        success: function(e){
+            var data = JSON.parse(e);
+            let html = 
+            `<label>Intervalo ( Minutos )</label>
+            <input value= "${data[0]['bomba_intervalo']/60}" type="number" class="form-control" placeholder="Minutos" min="1" id="intervalo_a">`;
+
+            $('#intervalo_b').html(html);
+            
+            let html2 =
+            `<label">Limite de Umidade ( % )</label>
+            <input value= "${data[0]['bomba_umidade_max']}" type="number" class="form-control" placeholder="%" min="0" max="100" id="sombra" />`;
+
+            $('#umidade_b').html(html2);
+
+            let html3 =
+            `<label>Tempo de Vazão ( Segundos )</label>
+            <input value= "${data[0]['bomba_tempo_vazao']}" type="number" class="form-control" placeholder="%" min="5" max="60" id="sombra" />`;
+
+            $('#vazao_b').html(html3);
+
+            if(data[0]['bomba_ativa'] == '1'){
+                let html4 = 
+                `<input class="form-check-input" type="checkbox"/>
+                <label class="form-check-label">Desativar ciclo</label>`;
+
+                $('#ativa_b').html(html4);
+
+            }else{
+                let html4 = 
+                `<input class="form-check-input" type="checkbox" checked/>
+                <label class="form-check-label">Desativar ciclo</label>`;
+
+                $('#ativa_b').html(html4);
+            }
+        }
+    });
+
+    $.ajax({
+        type: 'get',
+        crossDomain: true,
+        url: '../Config/retornaBomba?bomba=3',
+        success: function(e){
+            var data = JSON.parse(e);
+            let html = 
+            `<label>Intervalo ( Minutos )</label>
+            <input value= "${data[0]['bomba_intervalo']/60}" type="number" class="form-control" placeholder="Minutos" min="1" id="intervalo_a">`;
+
+            $('#intervalo_c').html(html);
+            
+            let html2 =
+            `<label">Limite de Umidade ( % )</label>
+            <input value= "${data[0]['bomba_umidade_max']}" type="number" class="form-control" placeholder="%" min="0" max="100" id="sombra" />`;
+
+            $('#umidade_c').html(html2);
+
+            let html3 =
+            `<label>Tempo de Vazão ( Segundos )</label>
+            <input value= "${data[0]['bomba_tempo_vazao']}" type="number" class="form-control" placeholder="%" min="5" max="60" id="sombra" />`;
+
+            $('#vazao_c').html(html3);
+
+            if(data[0]['bomba_ativa'] == '1'){
+                let html4 = 
+                `<input class="form-check-input" type="checkbox"/>
+                <label class="form-check-label">Desativar ciclo</label>`;
+
+                $('#ativa_c').html(html4);
+
+            }else{
+                let html4 = 
+                `<input class="form-check-input" type="checkbox" checked/>
+                <label class="form-check-label">Desativar ciclo</label>`;
+
+                $('#ativa_c').html(html4);
+            }
+        }
+    });
+
+    $.ajax({
+        type: 'get',
+        crossDomain: true,
+        url: '../Config/retornaTemperatura?sensor=1',
+        success: function(e){
+            var data = JSON.parse(e);
+            let html = 
+            `<label>Temperatura Máxima (ºC)</label>
+            <input value ="${data[0]['temperatura_max']}" type="number" class="form-control" placeholder="°C" min="-20" max="100" id="sombra" />`;
+
+            $('#temperatura_a').html(html);
+            
+        }
+    });
+
 }

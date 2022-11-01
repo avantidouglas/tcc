@@ -8,15 +8,15 @@ class Enviar extends Banco
 {
     public function temperatura($whatever)
     {
-        $leitura = (new Banco)->retornaTeste();
-        echo json_encode($leitura);
+        exit;
     }
 
-    public function umidade(): array
+    public function umidade()
     {
-        return [
+        $leitura = [
             "status" => true,
             "message" => "umidade"
         ];
+        echo json_encode($leitura);
     }
 }
