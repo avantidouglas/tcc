@@ -26,22 +26,6 @@ function exporCorpo(){
     ob.classList.add("escondido");
 }
 
-
-var div4 = document.getElementById("botao-02");
-    div4.onclick = function(){
-    alert("Botão 02");
-}
-
-var div5 = document.getElementById("botao-03");
-    div5.onclick = function(){
-    alert("Botão 03");
-}
-
-var div6 = document.getElementById("botao-04");
-    div6.onclick = function(){
-    alert("Botão 04");
-}
-
 function configAtual(){
     $.ajax({
         type: 'get',
@@ -96,19 +80,19 @@ function configAtual(){
             var data = JSON.parse(e);
             let html = 
             `<label>Intervalo ( Minutos )</label>
-            <input value= "${data[0]['bomba_intervalo']/60}" type="number" class="form-control" placeholder="Minutos" min="1" id="intervalo_a">`;
+            <input value= "${data[0]['bomba_intervalo']/60}" type="number" class="form-control sombra" placeholder="Minutos" min="1" id="intervalo_b_input">`;
 
             $('#intervalo_b').html(html);
             
             let html2 =
             `<label">Limite de Umidade ( % )</label>
-            <input value= "${data[0]['bomba_umidade_max']}" type="number" class="form-control" placeholder="%" min="0" max="100" id="sombra" />`;
+            <input value= "${data[0]['bomba_umidade_max']}" type="number" class="form-control sombra" placeholder="%" min="0" max="100" id="umidade_b_input" />`;
 
             $('#umidade_b').html(html2);
 
             let html3 =
             `<label>Tempo de Vazão ( Segundos )</label>
-            <input value= "${data[0]['bomba_tempo_vazao']}" type="number" class="form-control" placeholder="%" min="5" max="60" id="sombra" />`;
+            <input value= "${data[0]['bomba_tempo_vazao']}" type="number" class="form-control sombra" placeholder="%" min="5" max="60" id="vazao_b_input" />`;
 
             $('#vazao_b').html(html3);
 
@@ -137,19 +121,19 @@ function configAtual(){
             var data = JSON.parse(e);
             let html = 
             `<label>Intervalo ( Minutos )</label>
-            <input value= "${data[0]['bomba_intervalo']/60}" type="number" class="form-control" placeholder="Minutos" min="1" id="intervalo_a">`;
+            <input value= "${data[0]['bomba_intervalo']/60}" type="number" class="form-control sombra" placeholder="Minutos" min="1" id="intervalo_c_input">`;
 
             $('#intervalo_c').html(html);
             
             let html2 =
             `<label">Limite de Umidade ( % )</label>
-            <input value= "${data[0]['bomba_umidade_max']}" type="number" class="form-control" placeholder="%" min="0" max="100" id="sombra" />`;
+            <input value= "${data[0]['bomba_umidade_max']}" type="number" class="form-control sombra" placeholder="%" min="0" max="100" id="umidade_c_input" />`;
 
             $('#umidade_c').html(html2);
 
             let html3 =
             `<label>Tempo de Vazão ( Segundos )</label>
-            <input value= "${data[0]['bomba_tempo_vazao']}" type="number" class="form-control" placeholder="%" min="5" max="60" id="sombra" />`;
+            <input value= "${data[0]['bomba_tempo_vazao']}" type="number" class="form-control sombra" placeholder="%" min="5" max="60" id="vazao_c_input" />`;
 
             $('#vazao_c').html(html3);
 
@@ -204,6 +188,46 @@ $("#botao-01").click(() =>
     {
 
         alert('Bomba 01 atualizada com sucesso!');
+
+    }
+);
+
+$("#botao-02").click(() =>
+    {
+        let intervalo = $("#intervalo_b_input").val();
+        let umidade = $("#umidade_b_input").val();
+        let vazao = $("#vazao_b_input").val();
+        // let ativa = $('#ativa_b_input').is(':checked');
+
+        salvar('../Config/atualizaBomba'+'?'+'bomba=2&bomba_ativa=1&bomba_intervalo='+intervalo*60+'&bomba_umidade_max='+umidade+'&bomba_tempo_vazao='+vazao);
+
+    }
+);
+
+$("#botao-02").click(() =>
+    {
+
+        alert('Bomba 02 atualizada com sucesso!');
+
+    }
+);
+
+$("#botao-03").click(() =>
+    {
+        let intervalo = $("#intervalo_c_input").val();
+        let umidade = $("#umidade_c_input").val();
+        let vazao = $("#vazao_c_input").val();
+        // let ativa = $('#ativa_c_input').is(':checked');
+
+        salvar('../Config/atualizaBomba'+'?'+'bomba=3&bomba_ativa=1&bomba_intervalo='+intervalo*60+'&bomba_umidade_max='+umidade+'&bomba_tempo_vazao='+vazao);
+
+    }
+);
+
+$("#botao-03").click(() =>
+    {
+
+        alert('Bomba 03 atualizada com sucesso!');
 
     }
 );
