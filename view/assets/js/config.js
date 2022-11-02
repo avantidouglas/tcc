@@ -56,14 +56,14 @@ function configAtual(){
             if(data[0]['bomba_ativa'] == '1'){
                 let html4 = 
                 `<input class="form-check-input" type="checkbox"/>
-                <label class="form-check-label" for="ativa_a">Desativar ciclo</label>`;
+                <label class="form-check-label">Desativar ciclo</label>`;
 
                 $('#ativa_a').html(html4);
 
             }else{
                 let html4 = 
-                `<input class="form-check-input" type="checkbox" checked/>
-                <label class="form-check-label" for="ativa_a_input">Desativar ciclo</label>`;
+                `<input id="ativa_a_input" class="form-check-input" type="checkbox" checked/>
+                <label class="form-check-label">Desativar ciclo</label>`;
 
                 $('#ativa_a').html(html4);
             }
@@ -162,7 +162,7 @@ function configAtual(){
             var data = JSON.parse(e);
             let html = 
             `<label>Temperatura Máxima (ºC)</label>
-            <input value ="${data[0]['temperatura_max']}" type="number" class="form-control" placeholder="°C" min="-20" max="100" id="sombra" />`;
+            <input value ="${data[0]['temperatura_max']}" type="number" class="form-control sombra" placeholder="°C" min="-20" max="100" id="temperatura_max_input" />`;
 
             $('#temperatura_a').html(html);
             
@@ -187,7 +187,7 @@ $("#botao-01").click(() =>
 $("#botao-01").click(() =>
     {
 
-        alert('Bomba 01 atualizada com sucesso!');
+        alert('Atualização enviada para Bomba 01!');
 
     }
 );
@@ -207,7 +207,7 @@ $("#botao-02").click(() =>
 $("#botao-02").click(() =>
     {
 
-        alert('Bomba 02 atualizada com sucesso!');
+        alert('Atualização enviada para Bomba 02!');
 
     }
 );
@@ -227,7 +227,24 @@ $("#botao-03").click(() =>
 $("#botao-03").click(() =>
     {
 
-        alert('Bomba 03 atualizada com sucesso!');
+        alert('Atualização enviada para Bomba 03!');
+
+    }
+);
+
+$("#botao-04").click(() =>
+    {
+        let temp = $("#temperatura_max_input").val();
+
+        salvar('../Config/atualizaTempetatura?sensor=1&temperatura_max='+temp);
+
+    }
+);
+
+$("#botao-04").click(() =>
+    {
+
+        alert('Atualização enviada para o Sensor de Temperatura 01!');
 
     }
 );

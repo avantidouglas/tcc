@@ -46,8 +46,18 @@ class Config
         }
     }
 
-    public function atualizaTempetatura(){
+    public function atualizaTempetatura($variaveis){
+        if($variaveis['temperatura_max'] <= 0 or $variaveis['temperatura_max'] > 100){
+            echo json_encode(['status' => 'error', 'message' => 'temperatura_max deve ser maior que 0 e menor que 100']);
+            return;
+        }
+
+        $result = (new Banco())->atualizaTemperatura($variaveis['sensor'], $variaveis['temperatura_max']);
         
+        if($result){
+            echo json_encode(['status' => 'success', 'message' => 'Sensor atualizado com sucesso']);
+        }else{
+            echo json_encode(['status' => 'error', 'message' => 'Erro ao atualizar sensor']);
+        }
     }
-    
 }
