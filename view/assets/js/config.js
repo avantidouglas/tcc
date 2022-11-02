@@ -26,10 +26,6 @@ function exporCorpo(){
     ob.classList.add("escondido");
 }
 
-var div3 = document.getElementById("botao-01");
-    div3.onclick = function(){
-    alert("Botão 01");
-}
 
 var div4 = document.getElementById("botao-02");
     div4.onclick = function(){
@@ -56,19 +52,19 @@ function configAtual(){
 
             let html = 
             `<label>Intervalo ( Minutos )</label>
-            <input value= "${data[0]['bomba_intervalo']/60}" type="number" class="form-control" placeholder="Minutos" min="1" id="intervalo_a">`;
+            <input value= "${data[0]['bomba_intervalo']/60}" type="number" class="form-control sombra" placeholder="Minutos" min="1" id="intervalo_a_input">`;
 
             $('#intervalo_a').html(html);
             
             let html2 =
             `<label">Limite de Umidade ( % )</label>
-            <input value= "${data[0]['bomba_umidade_max']}" type="number" class="form-control" placeholder="%" min="0" max="100" id="sombra" />`;
+            <input value= "${data[0]['bomba_umidade_max']}" type="number" class="form-control sombra" placeholder="%" min="0" max="100" id="umidade_a_input" />`;
 
             $('#umidade_a').html(html2);
 
             let html3 =
             `<label>Tempo de Vazão ( Segundos )</label>
-            <input value= "${data[0]['bomba_tempo_vazao']}" type="number" class="form-control" placeholder="%" min="5" max="60" id="sombra" />`;
+            <input value= "${data[0]['bomba_tempo_vazao']}" type="number" class="form-control sombra" placeholder="%" min="5" max="60" id="vazao_a_input" />`;
 
             $('#vazao_a').html(html3);
 
@@ -83,7 +79,7 @@ function configAtual(){
             }else{
                 let html4 = 
                 `<input class="form-check-input" type="checkbox" checked/>
-                <label class="form-check-label" for="ativa_a">Desativar ciclo</label>`;
+                <label class="form-check-label" for="ativa_a_input">Desativar ciclo</label>`;
 
                 $('#ativa_a').html(html4);
             }
@@ -189,4 +185,35 @@ function configAtual(){
         }
     });
 
+}
+
+
+$("#botao-01").click(() =>
+    {
+        let intervalo = $("#intervalo_a_input").val();
+        let umidade = $("#umidade_a_input").val();
+        let vazao = $("#vazao_a_input").val();
+        // let ativa = $('#ativa_a_input').is(':checked');
+
+        salvar('../Config/atualizaBomba'+'?'+'bomba=1&bomba_ativa=1&bomba_intervalo='+intervalo*60+'&bomba_umidade_max='+umidade+'&bomba_tempo_vazao='+vazao);
+
+    }
+);
+
+$("#botao-01").click(() =>
+    {
+
+        alert('Bomba 01 atualizada com sucesso!');
+
+    }
+);
+
+function salvar(url){
+    $.ajax({
+        type: 'get',
+        crossDomain: true,
+        url: url,
+        success: function(){
+        }
+    });
 }

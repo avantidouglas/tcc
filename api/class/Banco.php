@@ -34,18 +34,22 @@ class Banco
 
     public function retornaConfigTemperatura($sensor)
     {
-        $sql = "SELECT * FROM tcc.temperatura_config WHERE id = $sensor";
+        $sql = "SELECT temperatura_max FROM tcc.temperatura_config WHERE id = $sensor";
         $result = $this->db->query($sql)->fetch_all(MYSQLI_ASSOC);
         return $result;
     }
 
-    public function atualizaBomba($bomba)
+    public function atualizaBomba($bomba, int $bomba_ativa, int $intervalo, int $umidade, int $tempo)
     {
-
+        $sql = "UPDATE tcc.bomba SET bomba_ativa = $bomba_ativa, bomba_intervalo = $intervalo, bomba_umidade_max = $umidade, bomba_tempo_vazao = $tempo WHERE id = $bomba";
+        $result = $this->db->query($sql);
+        return $result;
     }
 
-    public function atualizaTemperatura($temperatura)
+    public function atualizaTemperatura($sensor, $temperatura_max)
     {
-
+        $sql = "UPDATE tcc.temperatura_config SET temperatura_max = $temperatura_max WHERE id = $sensor";
+        $result = $this->db->query($sql);
+        return $result;
     }
 }
