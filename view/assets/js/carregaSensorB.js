@@ -1,87 +1,110 @@
-var ctx = document.getElementById('sensor_b').getContext('2d');
-var myLineChart = new Chart(ctx, {
-    type: 'line',
-    data: {
-        labels: [" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "
-                ," ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "],
-        datasets: [{
-                label: 'Sensor B',
-                data: [20, 23, 25, 28, 35, 38, 40, 45, 47, 47, 47, 56
-                      ,58, 60, 62, 65, 68, 70, 72, 75, 78, 80, 82, 85],
-                borderColor: '#ADD8E6',
-                borderWidth: 3,
-                type: 'line'
-            }
-        ]
-
-    },
-    options: {
-        legend: {
-            labels: {
-                fontColor: "white",
-                fontSize: 18
-            }
-        },
-        scales: {
-            xAxes: [{
-                display: true,
-                scaleLabel: {
-                    display: true,
-                    labelString: 'Ultimas 2 Horas',
-                    fontColor: '#ffffff',
-                    fontSize: 16
-
-                },
-                ticks: {
-                    fontColor: "white",
-                    fontSize: 20
-
-                }
-            }],
-            yAxes: [{
-                display: true,
-                scaleLabel: {
-                    display: true,
-                    labelString: '(%) de Umidade',
-                    fontColor: '#ffffff',
-                    fontSize: 16
-                },
-                ticks: {
-                    fontColor: "white",
-                    fontSize: 20
-                }
-
-            }]
-
-
+$.ajax({
+    type: 'get',
+    crossDomain: true,
+    url: '../Graficos/geraGraficoLinha?sensor=2',
+    success: function(e){
+        var data = JSON.parse(e);
+        var medidas = [];
+        var tamanho = [];
+        for(var i = 0; i < data.length; i++){
+            medidas.push(data[i]['leitura_valor'])
+        }
+        for(var i = 0; i < data.length; i++){
+            tamanho.push(" ");
         }
 
+        var ctx = document.getElementById('sensor_b').getContext('2d');
+        var myLineChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: tamanho,
+                datasets: [{
+                        label: 'Sensor B',
+                        data: medidas,
+                        borderColor: '#ADD8E6',
+                        borderWidth: 3,
+                        type: 'line'
+                    }
+                ]
 
+            },
+            options: {
+                legend: {
+                    labels: {
+                        fontColor: "white",
+                        fontSize: 18
+                    }
+                },
+                scales: {
+                    xAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Ultimas 20 Medidas',
+                            fontColor: '#ffffff',
+                            fontSize: 16
+
+                        },
+                        ticks: {
+                            fontColor: "white",
+                            fontSize: 20
+
+                        }
+                    }],
+                    yAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            display: true,
+                            labelString: '(%) de Umidade',
+                            fontColor: '#ffffff',
+                            fontSize: 16
+                        },
+                        ticks: {
+                            fontColor: "white",
+                            fontSize: 20
+                        }
+
+                    }]
+                }
+            }
+        });
     }
-
 });
 
-var valor = 35;
-var resto = 100-valor;
+        
 
-new Chart(document.getElementById("sensor_b_agora"), {
-    "type": "doughnut",
-    "data": {
-        "labels": ["UMIDADE (%)", "SECURA (%)"],
-        "datasets": [{
-            "data": [valor, resto],
-            borderColor: '#222046',
-            borderWidth: 10,
-            "backgroundColor": ["rgb(255, 99, 132)", "rgb(54, 162, 235)", "rgb(255, 205, 86)"],
-            hoverBorderColor: '#222046',
-        }]
-    },
-    options: {
-        legend: {
-            labels: {
-                fontColor: "white",
-                fontSize: 18
+
+
+
+
+$.ajax({
+    type: 'get',
+    crossDomain: true,
+    url: '../Graficos/geraGraficoDonut?sensor=2',
+    success: function(e){
+        var data = JSON.parse(e);
+        let donut = data[0]['leitura_valor'];
+        new Chart(document.getElementById("sensor_b_agora"), {
+            "type": "doughnut",
+            "data": {
+                "labels": ["UMIDADE (%)", "SECURA (%)"],
+                "datasets": [{
+                    "data": [donut, 100-donut],
+                    borderColor: '#222046',
+                    borderWidth: 10,
+                    "backgroundColor": ["rgb(54, 162, 235)", "rgb(255, 99, 132)"],
+                    hoverBorderColor: '#222046',
+                }]
+            },
+            options: {
+                legend: {
+                    labels: {
+                        fontColor: "white",
+                        fontSize: 18
+                    }
+                }
             }
-        }
+        });
+
     }
 });

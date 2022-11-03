@@ -52,4 +52,18 @@ class Banco
         $result = $this->db->query($sql);
         return $result;
     }
+
+    public function retornaLeituraGrafico($sensor){
+        $sql = "SELECT leitura_valor FROM (SELECT leitura_valor, leitura_data FROM tcc.sensor_leitura where sensor_id = ".$sensor." ORDER BY id desc limit 20) as retorno order by leitura_data";
+        $result = $this->db->query($sql)->fetch_all(MYSQLI_ASSOC);
+        return $result;
+    }
+
+    public function retornaLeituraGraficoUnit($sensor){
+        $sql = "SELECT leitura_valor FROM (SELECT leitura_valor, leitura_data FROM tcc.sensor_leitura where sensor_id = ".$sensor." ORDER BY id desc limit 1) as retorno order by leitura_data";
+        $result = $this->db->query($sql)->fetch_all(MYSQLI_ASSOC);
+        return $result;
+    }
+
+
 }
