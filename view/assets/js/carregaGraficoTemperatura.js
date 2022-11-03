@@ -1,3 +1,6 @@
+carregaGraficoTemperatura();
+
+function carregaGraficoTemperatura() {
 $.ajax({
     type: 'get',
     crossDomain: true,
@@ -70,3 +73,4 @@ $.ajax({
                 }}});
     }
 });
+}

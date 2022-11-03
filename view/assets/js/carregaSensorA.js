@@ -1,3 +1,6 @@
+carregaGraficoA();
+
+function carregaGraficoA() {
 $.ajax({
     type: 'get',
     crossDomain: true,
@@ -115,3 +118,4 @@ $.ajax({
 });
 
 
+}
