@@ -28,6 +28,10 @@
           <input type="image" src="assets/img/notification.png" width="40px" height="40px">
         </div>
     </nav>
+    <!-- /////////////////////////////////////////////// -->
+
+    
+
     <!-- CONTEÚDO -->
     <div id="corpo-config" class="container-fluid escondido">
       <div class="row mb-3">
@@ -306,14 +310,40 @@
     </div>
     </div>
     </div>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js"></script>
-    <script src="./assets/js/jquery.js"></script>
-    <script src="./assets/js/carregaGraficoTemperatura.js"></script>
-    <script src="./assets/js/carregaSensorA.js"></script>
-    <script src="./assets/js/carregaSensorB.js"></script>
-    <script src="./assets/js/carregaSensorC.js"></script>
-    <script src="./assets/js/config.js"></script>
-    <script src="./assets/js/apiTempo.js"></script>
-    <script src="./assets/js/refresh.js"></script>
+
+
+    <div class="container-fluid escondido" id="corpo-notification">
+      <div class="row mb-3">
+        <div class="col-md-12">
+          <div class="card sombra" style="background-color:#191835; color:#fff;height: 100%;">
+            <div class="card-header">
+              <h6>Notificações</h6>
+            </div>
+            <div class="card-body">
+              <div class="container" style="background-color: #222046;margin-top:5px;height: 100%;">
+                <!-- Nascer do Sol -->
+                <div class="row mt-3 mb-3">
+                  <div class="col-12">
+                    <div id="local-notification" class="card mt-3" style="background-color:#191835; color:#fff;height: 100%;">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-success sombra2" id="voltar-2" style="float: right;margin-top: 20px;margin-bottom: 30px;"> Voltar </button>
+    </div>
   </body>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js"></script>
+  <script src="./assets/js/jquery.js"></script>
+  <script src="./assets/js/carregaGraficoTemperatura.js"></script>
+  <script src="./assets/js/carregaSensorA.js"></script>
+  <script src="./assets/js/carregaSensorB.js"></script>
+  <script src="./assets/js/carregaSensorC.js"></script>
+  <script src="./assets/js/config.js"></script>
+  <script src="./assets/js/notification.js"></script>
+  <script src="./assets/js/apiTempo.js"></script>
+  <script src="./assets/js/refresh.js"></script>
 </html>

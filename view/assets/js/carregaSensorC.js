@@ -79,7 +79,7 @@ $.ajax({
 $.ajax({
     type: 'get',
     crossDomain: true,
-    url: '../Graficos/geraGraficoDonut?sensor=1',
+    url: '../Graficos/geraGraficoDonut?sensor=3',
     success: function(e){
         var data = JSON.parse(e);
         let donut = data[0]['leitura_valor'];

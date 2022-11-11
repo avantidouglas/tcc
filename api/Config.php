@@ -16,6 +16,11 @@ class Config
         echo json_encode($result);
     }
 
+    public function  retornaNotificao(){
+        $result = (new Banco())->retornaNotificacao();
+        echo json_encode($result);
+    }
+
     public function atualizaBomba($variaveis){
         if($variaveis['bomba_ativa'] != 1 and $variaveis['bomba_ativa'] != 0){
             echo json_encode(['status' => 'error', 'message' => 'bomba_ativa deve ser 0 ou 1']);
@@ -32,7 +37,7 @@ class Config
             return;
         }
 
-        if($variaveis['bomba_tempo_vazao'] <= 5){
+        if($variaveis['bomba_tempo_vazao'] < 5){
             echo json_encode(['status' => 'error', 'message' => 'bomba_tempo_vazao deve ser maior que 5']);
             return;
         }

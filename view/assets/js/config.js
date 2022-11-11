@@ -9,6 +9,9 @@ function escondeCorpo() {
     var ob = document.getElementById("dashboard");
     ob.classList.add("escondido");
 
+    var ob = document.getElementById("corpo-notification");
+    ob.classList.add("escondido");
+
     var ob = document.getElementById("corpo-config");
     ob.classList.remove("escondido");
 }
@@ -18,11 +21,21 @@ var div2 = document.getElementById("voltar");
     exporCorpo();
 }
 
+var div2 = document.getElementById("voltar-2");
+    div2.onclick = function(){
+    exporCorpo();
+}
+
 function exporCorpo(){
     var ob = document.getElementById("dashboard");
     ob.classList.remove("escondido");
 
+    refresh();
+
     var ob = document.getElementById("corpo-config");
+    ob.classList.add("escondido");
+
+    var ob = document.getElementById("corpo-notification");
     ob.classList.add("escondido");
 }
 
@@ -36,7 +49,7 @@ function configAtual(){
 
             let html = 
             `<label>Intervalo ( Minutos )</label>
-            <input value= "${data[0]['bomba_intervalo']/60}" type="number" class="form-control sombra" placeholder="Minutos" min="1" id="intervalo_a_input">`;
+            <input value= "${data[0]['bomba_intervalo']}" type="number" class="form-control sombra" placeholder="Minutos" min="1" id="intervalo_a_input">`;
 
             $('#intervalo_a').html(html);
             
@@ -55,14 +68,14 @@ function configAtual(){
 
             if(data[0]['bomba_ativa'] == '1'){
                 let html4 = 
-                `<input class="form-check-input" type="checkbox"/>
+                `<input id="ativa_a_input" class="form-check-input" type="checkbox"/>
                 <label class="form-check-label">Desativar ciclo</label>`;
 
                 $('#ativa_a').html(html4);
 
             }else{
                 let html4 = 
-                `<input id="ativa_a_input" class="form-check-input" type="checkbox" checked/>
+                `<input id="ativa_a_input" type="checkbox" checked/>
                 <label class="form-check-label">Desativar ciclo</label>`;
 
                 $('#ativa_a').html(html4);
@@ -80,7 +93,7 @@ function configAtual(){
             var data = JSON.parse(e);
             let html = 
             `<label>Intervalo ( Minutos )</label>
-            <input value= "${data[0]['bomba_intervalo']/60}" type="number" class="form-control sombra" placeholder="Minutos" min="1" id="intervalo_b_input">`;
+            <input value= "${data[0]['bomba_intervalo']}" type="number" class="form-control sombra" placeholder="Minutos" min="1" id="intervalo_b_input">`;
 
             $('#intervalo_b').html(html);
             
@@ -98,14 +111,14 @@ function configAtual(){
 
             if(data[0]['bomba_ativa'] == '1'){
                 let html4 = 
-                `<input class="form-check-input" type="checkbox"/>
+                `<input id="ativa_b_input" class="form-check-input" type="checkbox"/>
                 <label class="form-check-label">Desativar ciclo</label>`;
 
                 $('#ativa_b').html(html4);
 
             }else{
                 let html4 = 
-                `<input class="form-check-input" type="checkbox" checked/>
+                `<input id="ativa_b_input" class="form-check-input" type="checkbox" checked/>
                 <label class="form-check-label">Desativar ciclo</label>`;
 
                 $('#ativa_b').html(html4);
@@ -121,7 +134,7 @@ function configAtual(){
             var data = JSON.parse(e);
             let html = 
             `<label>Intervalo ( Minutos )</label>
-            <input value= "${data[0]['bomba_intervalo']/60}" type="number" class="form-control sombra" placeholder="Minutos" min="1" id="intervalo_c_input">`;
+            <input value= "${data[0]['bomba_intervalo']}" type="number" class="form-control sombra" placeholder="Minutos" min="1" id="intervalo_c_input">`;
 
             $('#intervalo_c').html(html);
             
@@ -139,14 +152,14 @@ function configAtual(){
 
             if(data[0]['bomba_ativa'] == '1'){
                 let html4 = 
-                `<input class="form-check-input" type="checkbox"/>
+                `<input id="ativa_c_input" class="form-check-input" type="checkbox"/>
                 <label class="form-check-label">Desativar ciclo</label>`;
 
                 $('#ativa_c').html(html4);
 
             }else{
                 let html4 = 
-                `<input class="form-check-input" type="checkbox" checked/>
+                `<input id="ativa_c_input" class="form-check-input" type="checkbox" checked/>
                 <label class="form-check-label">Desativar ciclo</label>`;
 
                 $('#ativa_c').html(html4);
@@ -177,17 +190,22 @@ $("#botao-01").click(() =>
         let intervalo = $("#intervalo_a_input").val();
         let umidade = $("#umidade_a_input").val();
         let vazao = $("#vazao_a_input").val();
-        // let ativa = $('#ativa_a_input').is(':checked');
+        
+        if($('#ativa_a_input').is(':checked')){
+            var saida = 0;
+        }else{
+            var saida = 1;
+        }
 
-        salvar('../Config/atualizaBomba'+'?'+'bomba=1&bomba_ativa=1&bomba_intervalo='+intervalo*60+'&bomba_umidade_max='+umidade+'&bomba_tempo_vazao='+vazao);
+        
 
+        salvar('../Config/atualizaBomba'+'?'+'bomba=1&bomba_ativa='+saida+'&bomba_intervalo='+intervalo+'&bomba_umidade_max='+umidade+'&bomba_tempo_vazao='+vazao);
+        alert('Atualização enviada para Bomba 01!');
     }
 );
 
 $("#botao-01").click(() =>
     {
-
-        alert('Atualização enviada para Bomba 01!');
 
     }
 );
@@ -197,17 +215,19 @@ $("#botao-02").click(() =>
         let intervalo = $("#intervalo_b_input").val();
         let umidade = $("#umidade_b_input").val();
         let vazao = $("#vazao_b_input").val();
-        // let ativa = $('#ativa_b_input').is(':checked');
+        if($('#ativa_b_input').is(':checked')){
+            var saida = 0;
+        }else{
+            var saida = 1;
+        }
 
-        salvar('../Config/atualizaBomba'+'?'+'bomba=2&bomba_ativa=1&bomba_intervalo='+intervalo*60+'&bomba_umidade_max='+umidade+'&bomba_tempo_vazao='+vazao);
-
+        salvar('../Config/atualizaBomba'+'?'+'bomba=2&bomba_ativa='+saida+'&bomba_intervalo='+intervalo+'&bomba_umidade_max='+umidade+'&bomba_tempo_vazao='+vazao);
+        alert('Atualização enviada para Bomba 02!');
     }
 );
 
 $("#botao-02").click(() =>
     {
-
-        alert('Atualização enviada para Bomba 02!');
 
     }
 );
@@ -217,17 +237,19 @@ $("#botao-03").click(() =>
         let intervalo = $("#intervalo_c_input").val();
         let umidade = $("#umidade_c_input").val();
         let vazao = $("#vazao_c_input").val();
-        // let ativa = $('#ativa_c_input').is(':checked');
+        if($('#ativa_c_input').is(':checked')){
+            var saida = 0;
+        }else{
+            var saida = 1;
+        }
 
-        salvar('../Config/atualizaBomba'+'?'+'bomba=3&bomba_ativa=1&bomba_intervalo='+intervalo*60+'&bomba_umidade_max='+umidade+'&bomba_tempo_vazao='+vazao);
-
+        salvar('../Config/atualizaBomba'+'?'+'bomba=3&bomba_ativa='+saida+'&bomba_intervalo='+intervalo+'&bomba_umidade_max='+umidade+'&bomba_tempo_vazao='+vazao);
+        alert('Atualização enviada para Bomba 03!');
     }
 );
 
 $("#botao-03").click(() =>
     {
-
-        alert('Atualização enviada para Bomba 03!');
 
     }
 );

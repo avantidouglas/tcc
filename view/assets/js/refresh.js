@@ -5,10 +5,7 @@ function refresh(){
     carregaGraficoB();
     carregaGraficoC();
     console.log("refresh");
-    setTimeout(() => {  refresh(); }, 10000);
+    setTimeout(() => {  refresh(); }, 3000);
 }
 
-setTimeout(() => {  refresh(); }, 10000);
-
-
-
+setTimeout(() => {  refresh(); }, 3000);
